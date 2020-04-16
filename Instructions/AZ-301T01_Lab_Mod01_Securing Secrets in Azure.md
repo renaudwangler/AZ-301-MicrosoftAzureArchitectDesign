@@ -26,17 +26,15 @@
 
     - Leave the **Subscription** drop-down list entry set to its default value.
 
-    - In the **Resource group** section, select the **Create new** option and then, in the text box, type **AADesignLab0901-RG**.
+    - In the **Resource group** section, select **StagiaireXXX-RG1**.
 
     - In the **Key vault name** text box, type a globally unique value.
 
-    - In the **Region** drop-down list, select the Azure region to which you intend to deploy resources in this lab.
-
-    - Click **Pricing tier**, on the **Pricing tier** blade, click **Standard**, and then click **Select**.
+    - In the **Region** drop-down list, select the Azure region of the Resource group.
 
     - Leave all remaining settings with their default values.
 
-    - Click the **Create** button.
+    - Click the **Review + Create** and the **Create** button.
 
 1. Wait for the provisioning to complete before you proceed to the next task.
 
@@ -44,9 +42,9 @@
 
 1. In the hub menu in the Azure portal, click **Resource groups**.
 
-1. On the **Resource groups** blade, click **AADesignLab0901-RG**.
+1. On the **Resource groups** blade, click **StagiaireXXX-RG1**.
 
-1. On the **AADesignLab0901-RG** blade, click the entry representing the newly created key vault.
+1. On the **StagiaireXXX-RG1** blade, click the entry representing the newly created key vault.
 
 1. On the key vault blade, click **Secrets**.
 
@@ -72,12 +70,14 @@
 
 1. Refer to Exercice 1 in Lab 00 to create your Powershell environment.
 
+1. In the title line of the Cloud Shell pane, select **Bash** and **Confirm**.
+
 #### Task 5: Add a secret to a key vault using the CLI
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the name of the resource group that contains the Azure key vault you deployed earlier in this exercise:
 
     ```sh
-    RESOURCE_GROUP='AADesignLab0901-RG'
+    RESOURCE_GROUP='StagiaireXXX-RG1'
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to retrieve the name of the Azure key vault you created earlier in this exercise:
@@ -160,7 +160,7 @@
 
     - Leave the **Subscription** drop-down list entry set to its default value.
 
-    - In the **Resource group** section, select the **Use existing** option and then, in the drop-down list, select **AADesignLab0901-RG**.
+    - In the **Resource group** section, select the **Use existing** option and then, in the drop-down list, select **StagiaireXXX-RG1**.
 
     - In the **Vault Name** text box, type the name of the key vault you created earlier in this exercise.
 
@@ -232,7 +232,7 @@
 
     - Leave the **Subscription** drop-down list entry set to its default value.
 
-    - In the **Resource group** section, select the **Use existing** option and then, in the drop-down list, select **AADesignLab0901-RG**.
+    - In the **Resource group** section, select the **Use existing** option and then, in the drop-down list, select **StagiaireXXX-RG1**.
 
     - In the **Vault Name** field, type the name of the key vault you created earlier in this exercise.
 
@@ -246,9 +246,9 @@
 
 1. In the hub menu of the Azure portal, click **Resource groups**.
 
-1. On the **Resource groups** blade, click **AADesignLab0901-RG**.
+1. On the **Resource groups** blade, click **StagiaireXXX-RG1**.
 
-1. On the **AADesignLab0901-RG** blade, click the entry representing the key vault you created earlier in this exercise.
+1. On the **StagiaireXXX-RG1** blade, click the entry representing the key vault you created earlier in this exercise.
 
 1. On the key vault blade, click **Secrets**.
 
@@ -273,8 +273,8 @@
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the name of the resource group that will contain the hub virtual network:
 
-    ```
-    RESOURCE_GROUP='AADesignLab0901-RG'
+    ```sh
+    RESOURCE_GROUP='StagiaireXXX-RG1'
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to retrieve the resource id of the Azure key vault you created earlier in this exercise:
@@ -291,33 +291,25 @@
 
 #### Task 2: Prepare the Azure Resource Manager deployment template and parameters files
 
-1. In the **Cloud Shell** pane, click the **Upload/Download files** icon and, in the drop-down menu, click **Upload**.
-
-1. In the **Open** dialog box, navigate to the **\\allfiles\\AZ-301T01\\Module_01\\LabFiles\\Starter\\** folder, select the **vm-template.json** file, and click **Open**.
-
-1. In the **Cloud Shell** pane, click the **Upload/Download files** icon and, in the drop-down menu, click **Upload**.
-
-1. In the **Open** dialog box, navigate to the **\\allfiles\\AZ-301T01\\Module_01\\LabFiles\\Starter\\** folder, select the **vm-template.parameters.json** file, and click **Open**.
-
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to replace the placeholder for the **$KEY_VAULT_ID** parameter in the **vm-template.parameters.json** parameters file with the value of the **$KEY_VAULT_ID** variable:
 
     ```sh
-    sed -i.bak1 's/"$KEY_VAULT_ID"/"'"$KEY_VAULT_ID_REGEX"'"/' ~/vm-template.parameters.json
+    sed -i.bak1 's/"$KEY_VAULT_ID"/"'"$KEY_VAULT_ID_REGEX"'"/' ~/az-301/T1/vm-template.parameters.json
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to verify that the placeholder was successfully replaced in the parameters file:
 
     ```sh
-    cat ~/vm-template.parameters.json
+    cat ~/az-301/T1/vm-template.parameters.json
     ```
 
 #### Task 3: Configure a key vault for deployment of Azure Resource Manager templates
 
 1. In the hub menu in the Azure portal, click **Resource groups**.
 
-1. On the **Resource groups** blade, click **AADesignLab0901-RG**.
+1. On the **Resource groups** blade, click **StagiaireXXX-RG1**.
 
-1. On the **AADesignLab0901-RG** blade, click the entry representing the key vault you created in the previous exercise.
+1. On the **StagiaireXXX-RG1** blade, click the entry representing the key vault you created in the previous exercise.
 
 1. On the key vault blade, click **Access policies**.
 
@@ -330,7 +322,7 @@
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to deploy the Azure Resource Manager template with the specified parameters file:
 
     ```sh
-    az group deployment create --resource-group $RESOURCE_GROUP --template-file ~/vm-template.json --parameters @~/vm-template.parameters.json
+    az group deployment create --resource-group $RESOURCE_GROUP --template-file ~/az-301/T1/vm-template.json --parameters @~/az-301/T1/vm-template.parameters.json
     ```
 
 1. Wait for the deployment to complete before you proceed to the next task.
@@ -340,7 +332,7 @@
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the name of the resource group that contains the newly deployed Azure VM:
 
     ```
-    RESOURCE_GROUP='AADesignLab0901-RG'
+    RESOURCE_GROUP='StagiaireXXX-RG1''
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to retrieve the name of the Azure key vault containing the secret that stores the value of the password of the local Administrator account:
