@@ -2,30 +2,6 @@
 
 # Lab Answer Key: Deploying Configuration Management solutions to Azure
 
-## Before we start
-
-1. Ensure that you are logged in to your Windows 10 lab virtual machine using the following credentials:
-
-    - Username: **Admin**
-
-    - Password: **Pa55w.rd**
-
-1. Review Taskbar located at the bottom of your Windows 10 desktop. The Taskbar contains the icons for the common applications you will use in the labs:
-
-    - Microsoft Edge
-
-    - File Explorer
-
-    - [Visual Studio Code](https://code.visualstudio.com/)
-
-    - [Microsoft Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/)
-
-    - Bash on Ubuntu on Windows
-
-    - Windows PowerShell
-
-    > **Note**: You can also find shortcuts to these applications in the **Start Menu**.
-
 ## Exercise 1: Deploy compute resources
 
 #### Task 1: Open the Azure portal
@@ -34,41 +10,19 @@
 
 1. In the open browser window, navigate to the **Azure Portal** (<https://portal.azure.com>).
 
-1. When prompted, authenticate with the user account account that has the owner role in the Azure subscription you will be using in this lab.
+1. When prompted, authenticate with the user account account provided by your instructor.
 
 #### Task 2: Open Cloud Shell
 
 1. At the top of the portal, click the **Cloud Shell** icon to open a new shell instance.
 
-    > **Note**: The **Cloud Shell** icon is a symbol that is constructed of the combination of the *greater than* and *underscore* characters.
+1. Refer to Exercice 1 in Lab 00 to create your Powershell environment.
 
-1. If this is your first time opening the **Cloud Shell** using your subscription, you will see a wizard to configure **Cloud Shell** for first-time usage. When prompted, in the **Welcome to Azure Cloud Shell** pane, click **Bash (Linux)**.
-
-    > **Note**: If you do not see the configuration options for **Cloud Shell**, this is most likely because you are using an existing subscription with this course's labs. If so, proceed directly to the next task.
-
-1. In the **You have no storage mounted** pane, click **Show advanced settings**, perform the following tasks:
-
-    - Leave the **Subscription** drop-down list entry set to its default value.
-
-    - In the **Cloud Shell region** drop-down list, select the Azure region matching or near the location where you intend to deploy resources in this lab.
-
-    - In the **Resource group** section, select the **Create New** option and then, in the text box, type **AADesignLab1201-RG**.
-
-    - In the **Storage account** section, ensure that the **Create new** option is selected and then, in the text box below, type a unique name consisting of a combination of between 3 and 24 characters and digits.
-
-    - In the **File share** section, ensure that the **Create new** option is selected and then, in the text box below, type **cloudshell**.
-
-    - Click the **Create storage** button.
-
-1. Wait for the **Cloud Shell** to finish its first-time setup procedures before you proceed to the next task.
+1. In the title line of the Cloud Shell pane, select **Bash** and **Confirm**.
 
 #### Task 3: Deploy a Linux VM
 
-1. At the top of the portal, click the **Cloud Shell** icon to open a new Clould Shell instance.
-
-1. In the **Cloud Shell** pane, click the **Upload/Download files** icon and, in the drop-down menu, click **Upload**.
-
-1. In the **Open** dialog box, navigate to the **\\allfiles\\AZ-301T02\\Module_03\\LabFiles\\Starter\\** folder, select the **linux-template.json** file, and click **Open**. The file contains the following template:
+1. You will deploy the **linux-template.json** teplate file, conteining the following resources:
 
     ```json
     {
@@ -163,7 +117,7 @@
                 ],
                 "properties": {
                     "hardwareProfile": {
-                        "vmSize": "Standard_A1_v2"
+                        "vmSize": "Standard_DS1_v2"
                     },
                     "osProfile": {
                         "computerName": "[variables('vmName')]",
@@ -192,25 +146,13 @@
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the name of the resource group that will contain the hub virtual network:
 
     ```sh
-    RESOURCE_GROUP='AADesignLab1202-RG'
-    ```
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the Azure region you will use for the deployment (replace the placeholder `<Azure region>` with the name of the Azure region to which you intend to deploy resources in this lab):
-
-    ```sh
-    LOCATION='<Azure region>'
-    ```
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a new resource group:
-
-    ```sh
-    az group create --name $RESOURCE_GROUP --location $LOCATION
+    RESOURCE_GROUP='StagiaireXXX-RG1'
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to deploy the Azure Resource Manager template with the specified parameters file:
 
     ```sh
-    az group deployment create --resource-group $RESOURCE_GROUP --template-file ~/linux-template.json --parameters password=Pa55w.rd1234
+    az group deployment create --resource-group $RESOURCE_GROUP --template-file ~/az-301/T2/linux-template.json --parameters password=Pa55w.rd1234
     ```
 
 1. Do not wait for the deployment to complete before you proceed to the next task.
@@ -231,11 +173,11 @@
 
     - Leave the **Subscription** drop-down list entry set to its default value.
 
-    - In the **Resource group** section, select the **Create new** option and then, in the text box, type **AADesignLab1203-RG**.
+    - In the **Resource group** section, select **StagiaireXXX-RG1**.
 
-    - In the **Location** drop-down list, select the Azure region matching or near the location where you deployed the Azure VM in the previous task.
+    - In the **Location** drop-down list, select the Azure region from the Resource group.
 
-    - In the **Create Azure Run As account** section, ensure that **Yes** option is selected.
+    - In the **Create Azure Run As account** section, ensure that **No** option is selected.
 
     - Click the **Create** button.
 
@@ -250,9 +192,9 @@
 
 1. In the hub menu of the Azure portal, click **Resource groups**.
 
-1. On the **Resource groups** blade, click **AADesignLab1203-RG**.
+1. On the **Resource groups** blade, click **StagiaireXXX-RG1**.
 
-1. On the **AADesignLab1203-RG** blade, click the newly created Azure Automation account.
+1. On the **StagiaireXXX-RG1** blade, click the newly created Azure Automation account.
 
 1. On the **LinuxAutomation** blade, in the **SHARED RESOURCES** section on the left side of the blade, click **Modules gallery**.
 
@@ -276,7 +218,7 @@
 
 1. Back on the **LinuxAutomation** blade, in the **CONFIGURATION MANAGEMENT** section, click **State configuration (DSC)**.
 
-1. On the **LinuxAutomation - State configuration (DSC)** blade, click the **Configurations** link.
+1. On the **LinuxAutomation - State configuration (DSC)** blade, click the **Configurations** tab.
 
 1. On the **LinuxAutomation - State configuration (DSC)** blade, click the **+ Add** button at the top of the pane.
 
@@ -302,7 +244,7 @@
 
 1. Wait for the compilation task to finish. To determine the status of the compilation task, review the **STATUS** column of the **Compilation jobs** section of the **lampserver Configuration** blade.
 
-    > **Note**: You may need to close and re-open the blade to see the latest compilation status. This blade does not refresh automatically.
+    > **Note**: You may need to close and re-open the blade to see the latest compilation status. This blade does not refresh automatically. Alternatively, you should open the job blade.
 
 #### Task 3: Onboard Linux VM
 
@@ -343,29 +285,6 @@
 > **Review**: In this exercise, you created a PowerShell DSC configuration and applied the configuration to a Linux virtual machine.
 
 
-## Exercise 3: Remove lab resources
+#### Clean up resources
 
-#### Task 1: Open Cloud Shell
-
-1. At the top of the portal, click the **Cloud Shell** icon to open the Cloud Shell pane.
-
-1. At the **Cloud Shell** command prompt at the bottom of the portal, type in the following command and press **Enter** to list all resource groups you created in this lab:
-
-    ```sh
-    az group list --query "[?starts_with(name,'AADesignLab12')]".name --output tsv
-    ```
-
-1. Verify that the output contains only the resource groups you created in this lab. These groups will be deleted in the next task.
-
-#### Task 2: Delete resource groups
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to delete the resource groups you created in this lab
-
-    ```sh
-    az group list --query "[?starts_with(name,'AADesignLab12')]".name --output tsv | xargs -L1 bash -c 'az group delete --name $0 --no-wait --yes'
-    ```
-
-1. Close the **Cloud Shell** prompt at the bottom of the portal.
-
-
-> **Review**: In this exercise, you removed the resources used in this lab.
+1. Refer to **Exercice 2** of **Lab 00** to clean up your resources.
