@@ -621,3 +621,5 @@
 #### Clean up resources
 
 1. Refer to **Exercice 2** of **Lab 00** to clean up your resources.
+
+   >**Note :** You created a lot of resources in this lab. Please ensure you delete them all and... Be patient...
