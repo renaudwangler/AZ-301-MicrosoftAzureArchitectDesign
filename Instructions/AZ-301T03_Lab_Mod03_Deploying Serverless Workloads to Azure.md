@@ -2,30 +2,6 @@
 
 # Lab Answer Key: Deploying Serverless Workloads to Azure
 
-## Before we start
-
-1. Ensure that you are logged in to your Windows 10 lab virtual machine using the following credentials:
-
-    - Username: **Admin**
-
-    - Password: **Pa55w.rd**
-
-1. Review Taskbar located at the bottom of your Windows 10 desktop. The Taskbar contains the icons for the common applications you will use in the labs:
-
-    - Microsoft Edge
-
-    - File Explorer
-
-    - [Visual Studio Code](https://code.visualstudio.com/)
-
-    - [Microsoft Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/)
-
-    - Bash on Ubuntu on Windows
-
-    - Windows PowerShell
-
-    > **Note**: You can also find shortcuts to these applications in the **Start Menu**.
-
 ## Exercise 1: Create Web App
 
 #### Task 1: Open the Azure Portal
@@ -34,7 +10,7 @@
 
 1. In the open browser window, navigate to the **Azure Portal** (<https://portal.azure.com>).
 
-1. If prompted, authenticate with the user account account that has the owner role in the Azure subscription you will be using in this lab.
+1. If prompted, authenticate with the user account account provided by your instructor.
 
 #### Task 2: Open Cloud Shell
 
@@ -42,44 +18,22 @@
 
     > **Note**: The **Cloud Shell** icon is a symbol that is constructed of the combination of the *greater than* and *underscore* characters.
 
-1. If this is your first time opening the **Cloud Shell** using your subscription, you will see a wizard to configure **Cloud Shell** for first-time usage. When prompted, in the **Welcome to Azure Cloud Shell** pane, click **Bash (Linux)**.
+1. Refer to Exercice 1 in Lab 00 to create your Powershell environment.
 
-    > **Note**: If you do not see the configuration options for **Cloud Shell**, this is most likely because you are using an existing subscription with this course's labs. If so, proceed directly to the next task.
-
-1. In the **You have no storage mounted** pane, click **Show advanced settings**, perform the following tasks:
-
-    - Leave the **Subscription** drop-down list entry set to its default value.
-
-    - In the **Cloud Shell region** drop-down list, select the Azure region matching or near the location where you intend to deploy resources in this lab
-
-    - In the **Resource group** section, ensure that the **Create new** option is selected and then, in the text box below, type **AADesignLab0901-RG**.
-
-    - In the **Storage account** section, ensure that the **Create new** option is selected and then, in the text box below, type a unique name consisting of a combination of between 3 and 24 characters and digits.
-
-    - In the **File share** section, ensure that the **Create new** option is selected and then, in the text box below, type **cloudshell**.
-
-    - Click the **Create storage** button.
-
-1. Wait for the **Cloud Shell** to finish its first-time setup procedures before you proceed to the next task.
+1. In the title line of the Cloud Shell pane, select **Bash** and **Confirm**.
 
 #### Task 3: Create an App Service plan
 
 1. At the **Cloud Shell** command prompt at the bottom of the portal, type in the following command and press **Enter** to create a variable which value designates the name of the resource group you will use in this exercise:
 
     ```sh
-    RESOURCE_GROUP_APP='AADesignLab0502-RG'
+    RESOURCE_GROUP_APP='StagiaireXXX-RG1'
     ```
 
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the Azure region you will use for the deployment (Enter the name of the region when prompted):
+1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the Azure region you will use for the deployment:
 
     ```sh
-    read -p 'Region: ' LOCATION
-    ```
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create the resource group:
-
-    ```sh
-    az group create --name $RESOURCE_GROUP_APP --location $LOCATION
+    LOCATION=$(az group list --query "[?name == 'StagiaireXXX-RG1'].location" --output tsv)
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a new App Service plan:
@@ -87,8 +41,6 @@
     ```sh
     az appservice plan create --is-linux --name "AADesignLab0502-$LOCATION" --resource-group $RESOURCE_GROUP_APP --location $LOCATION --sku B2
     ```
-
-    > **Note**: In case the command fails with the message *Linux workers are not available in resource group AADesignLab0502-RG. Use this link to learn more https://go.microsoft.com/fwlink/?linkid=831180"*, delete the resource group, set **LOCATION** to **eastus** and rerun the two previous steps.
 
 #### Task 4: Create a Web App instance
 
@@ -118,9 +70,9 @@
 
 1. In the hub menu in the Azure portal, click **Resource groups**.
 
-1. On the **Resource groups** blade, click **AADesignLab0502-RG**.
+1. On the **Resource groups** blade, click **StagiaireXXX-RG**.
 
-1. On the **AADesignLab0502-RG** blade, click the entry representing the Azure web app you created earlier in this exercise.
+1. On the **StagiaireXXX-RG** blade, click the entry representing the Azure web app you created earlier in this exercise.
 
 1. On the web app blade, click the **Browse** button at the top of the blade.
 
@@ -140,7 +92,7 @@
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the name of the resource group you will use in this exercise:
 
     ```sh
-    RESOURCE_GROUP_APP='AADesignLab0502-RG'
+    RESOURCE_GROUP_APP='StagiaireXXX-RG1'
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the Azure region you will use for the deployment:
@@ -164,9 +116,7 @@
     > **Note**: In case the command fails due to duplicate web app name, re-run the last two steps until the command completes successfully
 
 
-1. In the **Cloud Shell** pane, click the **Upload/Download files** icon and, in the drop-down menu, click **Upload**.
-
-1. In the **Open** dialog box, navigate to the **\\allfiles\\AZ-301T03\\Module_03\\Labfiles\\Starter\\** folder, select the **github.json** file, and click **Open**. The file contains the following Azure Resource Manager template:
+1. Refer to Exercice 1 of LAB00 to download the **\\az-301\\T3Mod3\\github.json** file. The file contains the following Azure Resource Manager template:
 
     ```json
     {
@@ -211,9 +161,7 @@
     }
     ```
 
-1. In the **Cloud Shell** pane, click the **Upload/Download files** icon and, in the drop-down menu, click **Upload**.
-
-1. In the **Open** dialog box, navigate to the **\\allfiles\\AZ-301T03\\Module_03\\Labfiles\\Starter\\** folder, select the **parameters.json** file, and click **Open**. The file contains the following parameters for the Azure Resource Manager template you uploaded previously:
+1. Refer to Exercice 1 of LAB00 to download the **\\az-301\\T3Mod3\\parameters.json** file. The file contains the following parameters for the Azure Resource Manager template you uploaded previously:
 
     ```json
     {
@@ -250,25 +198,25 @@
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to replace the placeholder for the value of the **webAppName** parameter with the value of the **$WEBAPPNAME2** variable in the parameters file:
 
     ```sh
-    sed -i.bak1 's/"$WEBAPPNAME2"/"'"$WEBAPPNAME2"'"/' ~/parameters.json
+    sed -i.bak1 's/"$WEBAPPNAME2"/"'"$WEBAPPNAME2"'"/' ./az-301/T3Mod3/parameters.json
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to replace the placeholder for the value of the **repositoryUrl** parameter with the value of the **$REPOSITORY_URL** variable in the parameters file:
 
     ```sh
-    sed -i.bak2 's/"$REPOSITORY_URL"/"'"$REPOSITORY_URL_REGEX"'"/' ~/parameters.json
+    sed -i.bak2 's/"$REPOSITORY_URL"/"'"$REPOSITORY_URL_REGEX"'"/' ./az-301/T3Mod3/parameters.json
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to verify that the placeholders were successfully replaced in the parameters file:
 
     ```sh
-    cat ~/parameters.json
+    cat ./az-301/T3Mod3/parameters.json
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to deploy the GitHub-resident web app code by using a local Azure Resource Manager template and a local parameters file:
 
     ```sh
-    az group deployment create --resource-group $RESOURCE_GROUP_APP --template-file github.json --parameters @parameters.json
+    az group deployment create --resource-group $RESOURCE_GROUP_APP --template-file ./az-301/T3Mod3/github.json --parameters @./az-301/T3Mod3/parameters.json
     ```
 
 1. Wait for the deployment to complete before you proceed to the next task.
@@ -279,9 +227,9 @@
 
 1. In the hub menu in the Azure portal, click **Resource groups**.
 
-1. On the **Resource groups** blade, click **AADesignLab0502-RG**.
+1. On the **Resource groups** blade, click **StagiaireXXX-RG1**.
 
-1. On the **AADesignLab0502-RG** blade, click the entry representing the Azure web app you created in the previous task.
+1. On the **StagiaireXXX-RG1** blade, click the entry representing the Azure web app you created in the previous task.
 
 1. On the web app blade, click the **Browse** button at the top of the blade.
 
@@ -294,13 +242,7 @@
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the name of the resource group you will use in this task:
 
     ```sh
-    RESOURCE_GROUP_CONTAINER='AADesignLab0502-RG'
-    ```
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the Azure region you will use for the deployment:
-
-    ```sh
-    LOCATION=$(az group list --query "[?name == 'AADesignLab0502-RG'].location" --output tsv)
+    RESOURCE_GROUP_CONTAINER='StagiaireXXX-RG1'
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a new variable which value is a randomly generated string that you will use as the name of a new web app:
@@ -328,9 +270,9 @@
 
 1. In the hub menu in the Azure portal, click **Resource groups**.
 
-1. On the **Resource groups** blade, click **AADesignLab0502-RG**.
+1. On the **Resource groups** blade, click **StagiaireXXX-RG1**.
 
-1. On the **AADesignLab0502-RG** blade, click the entry representing the Azure web app you created in the previous task.
+1. On the **StagiaireXXX-RG1** blade, click the entry representing the Azure web app you created in the previous task.
 
 1. On the web app blade, click the **Browse** button at the top of the blade.
 
@@ -367,7 +309,7 @@
 
     - Leave the **Subscription** drop-down list entry set to its default value.
 
-    - In the **Resource group** section, ensure that **Create new** option is selected and, in the text box below, type **AADesignLab0503-RG**.
+    - In the **Resource group** section, select **StagiaireXXX-RG2**.
 
     - Leave the **Location** text box set to its default value.
     
@@ -398,9 +340,9 @@
 
 1. In the hub menu in the Azure portal, click **Resource groups**.
 
-1. On the **Resource groups** blade, click **AADesignLab0503-RG**.
+1. On the **Resource groups** blade, click **StagiaireXXX-RG1**.
 
-1. On the **AADesignLab0503-RG** blade, click the entry representing the Function App you created in the previous task.
+1. On the **StagiaireXXX-RG1** blade, click the entry representing the Function App you created in the previous task.
 
 1. On the Function App blade, locate the **Url** entry and click the hyperlink below to see the Function App landing page in a new browser tab.
 
@@ -408,30 +350,6 @@
 
 > **Review**: In this exercise, you deployed a Function App and code using an Azure Resource Manager template.
 
+#### Clean up resources
 
-## Exercise 4: Remove lab resources
-
-#### Task 1: Open Cloud Shell
-
-1. At the top of the portal, click the **Cloud Shell** icon to open the Cloud Shell pane.
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to list all resource groups you created in this lab:
-
-    ```sh
-    az group list --query "[?starts_with(name,'AADesignLab05')]".name --output tsv
-    ```
-
-1. Verify that the output contains only the resource groups you created in this lab. These groups will be deleted in the next task.
-
-#### Task 2: Delete resource groups
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to delete the resource groups you created in this lab
-
-    ```sh
-    az group list --query "[?starts_with(name,'AADesignLab05')]".name --output tsv | xargs -L1 bash -c 'az group delete --name $0 --no-wait --yes'
-    ```
-
-1. Close the **Cloud Shell** prompt at the bottom of the portal.
-
-
-> **Review**: In this exercise, you removed the resources used in this lab.
+1. Refer to **Exercice 2** of **Lab 00** to clean up your resources.
