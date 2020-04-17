@@ -44,7 +44,7 @@
     "kubernetesClusterName": "[concat('aks', uniqueString(resourceGroup().id))]",
     "kubernetesVersion": "1.15.7",
     "kubernetesAgentCount": 2,
-    "kubernetesAgentVMSize": "Standard_DS2_v2",
+    "kubernetesAgentVMSize": "Standard_DS1_v2",
     "gitRepository": "https://github.com/iainfoulds/devops-jenkins-aks",
     "_artifactsLocation": "https://raw.githubusercontent.com/iainfoulds/architecture-center/aks-devops/docs/sample-solutions/app-modernization/templates/devops-with-aks/",
     "_artifactsLocationSasToken": "",
