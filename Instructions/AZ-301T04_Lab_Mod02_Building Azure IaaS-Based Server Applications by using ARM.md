@@ -1,31 +1,6 @@
 # Building Azure IaaS-Based Server Applications.
 # Lab Answer Key: Building Azure IaaS-Based Server Applications by using Azure Resource Manager Templates and Azure Building Blocks.
 
-## Before we start
-
-1. Ensure that you are logged in to your Windows 10 lab virtual machine using the following credentials:
-
-    - Username: **Admin**
-
-    - Password: **Pa55w.rd**
-
-1. Review Taskbar located at the bottom of your Windows 10 desktop. The Taskbar contains the icons for the common applications you will use in the labs:
-
-    - Microsoft Edge
-
-    - File Explorer
-
-    - [Visual Studio Code](https://code.visualstudio.com/)
-
-    - [Microsoft Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/)
-
-    - Bash on Ubuntu on Windows
-
-    - Windows PowerShell
-
-    > **Note**: You can also find shortcuts to these applications in the **Start Menu**.
-
-
 ## Exercise 1: Deploy an Azure VM by using Azure Resource Manager templates with PowerShell Desired State Configuration (DSC) extension from the Azure portal.
 
 #### Task 1: Open the Azure Portal
@@ -34,7 +9,7 @@
 
 1. In the open browser window, navigate to the **Azure Portal** (<https://portal.azure.com>).
 
-1. If prompted, authenticate with the user account account that has the owner role in the Azure subscription you will be using in this lab.
+1. If prompted, authenticate with the user account provided by your instructor.
 
 #### Task 2: Create an Azure VM running Windows Server 2016 Datacenter.
 
@@ -42,19 +17,17 @@
 
 1. At the top of the **New** blade, in the **Search the Marketplace** text box, type **Windows Server** and press **Enter**.
 
-1. On the **Everything** blade, in the search results, click **Windows Server**.
-
 1. On the **Windows Server** blade, select the **[smalldisk] Windows Server 2016 Datacenter** software plan, then click the **Create** button.
 
 1. On the **Basics** tab, perform the following tasks:
 
     - Leave the **Subscription** drop-down list entry set to its default value.
 
-    - In the **Resource group** section, click **Create new**, in the text box, type **AADesignLab0301-RG**, and click **OK**.
+    - In the **Resource group** section, select **StagiaireXXX-RG1**.
 
     - In the **Name** text box, enter the value **lab03vm0**.
 
-    - In the **Region** drop-down list, select an Azure region to which you want to deploy resources in this lab.
+    - In the **Region** drop-down list, select the Azure region from the Resource group.
 
     - In the **Availability options** drop-down list, select **Availability set**.
 
@@ -143,11 +116,11 @@
 
     - Click the **Extract** button.
 
-1. In the new **File Explorer** window that appears, right-click the **IISWebServer.ps1** file and select the **Open with Code** option to start the **Visual Studio Code** application.
+1. In the new **File Explorer** window that appears, right-click the **IISWebServer.ps1** file and select the **Modify** to start the **Windows PowerShell ISE** application (if you're not running your lab on Windows, any text editor should do the job).
 
-1. In the **Visual Studio Code** window that appears, review the content of the PowerShell script.
+1. In the **Windows PowerShell ISE** window that appears, review the content of the PowerShell script.
 
-1. At the top of the **Visual Studio Code** window, click the **File** menu and select the **Close Window** option.
+1. At the top of the **Windows PowerShell ISE** window, click the **File** menu and select the **Close Window** option.
 
 1. Close both **File Explorer** windows.
 
@@ -168,14 +141,13 @@
 
     - Leave the **Subscription** drop-down list entry set to its default value.
 
-    - In the **Resource group** section, ensure that the **Use existing** option is selected and, in the drop-down list below, select the resource group you created earlier in this exercise.
+    - In the **Resource group** section, ensure that the **Use existing** option is selected and, in the drop-down list below, select the resource group you used earlier in this exercise.
 
     - In the **Name** text box, type a unique name consisting of a combination of between 3 and 24 characters and digits.
 
     - Leave the **Location** entry set to the same Azure region you selected earlier in this exercise.
 
     - In the **Performance** section, ensure that the **Standard** option is selected.
-
 
     - In the **Account kind** drop-down list, ensure that the **Storage (general purpose v1)** option is selected.
 
@@ -198,9 +170,9 @@
 
 1. With the **Overview** selection active, on the storage account blade, click **Containers**.
 
-1. Click the **Container** button at the top of the blade.
+1. Click the **+ Container** button at the top of the blade.
 
-1. In the **New container** pane that appears, specify the following settings and click **OK**:
+1. In the **New container** pane that appears, specify the following settings and click **Create**:
 
     - In the **Name** text box, enter the value **config**.
 
@@ -307,7 +279,7 @@
 
 1. Wait for the deployment of the DSC configuration to complete before you proceed to the next task.
 
-    > **Note**: DSC configuration deployment can take up to ten minutes.
+    > **Note**: DSC configuration deployment can take up to 10 minutes.
 
 
 #### Task 7: Validate that the Azure VM is serving web content
@@ -337,11 +309,13 @@
 
 1. In the **File Explorer** window that appears, navigate to the **\\allfiles\\AZ-301T04\\Module_02\\LabFiles\\Starter\\** folder.
 
-1. Right-click the **vmss-template.json** file and select the **Open with Code** option to start the **Visual Studio Code** application.
+1. Right-click the **vmss-template.json** file and select the **Modify** to start the **Windows PowerShell ISE** application (if you're not running your lab on Windows, any text editor should do the job).
 
-1. In the **Visual Studio Code** window that appears, review the content of the JSON file.
+1. In the **Windows PowerShell ISE** window that appears, review the content of the PowerShell script.
 
-1. At the top of the **Visual Studio Code** window, click the **File** menu and select the **Close Window** option.
+1. In the **Windows PowerShell ISE** window that appears, review the content of the JSON file.
+
+1. At the top of the **Windows PowerShell ISE** window, click the **File** menu and select the **Close Window** option.
 
 1. Close the **File Explorer** window.
 
@@ -374,7 +348,7 @@
 
     - Leave the **Subscription** drop-down list entry set to its default value.
 
-    - In the **Resource group** section, select the **Create new** option and, in the text box, type **AADesignLab0302-RG**.
+    - In the **Resource group** section, select **StagiaireXXX-RG1**.
 
     - Leave the **Location** entry set to its default value.
 
@@ -422,26 +396,9 @@
 
     > **Note**: The **Cloud Shell** icon is a symbol that is constructed of the combination of the *greater than* and *underscore* characters.
 
-1. If this is your first time opening the **Cloud Shell** using your subscription, you will see a wizard to configure **Cloud Shell** for first-time usage. When prompted, in the **Welcome to Azure Cloud Shell** pane, click **Bash (Linux)**.
+1. Refer to Exercice 1 in Lab 00 to create your Powershell environment.
 
-    > **Note**: If you do not see the configuration options for **Cloud Shell**, this is most likely because you are using an existing subscription with this course's labs. If so, proceed directly to the next task.
-
-1. In the **You have no storage mounted** pane, click **Show advanced settings**, perform the following tasks:
-
-    - Leave the **Subscription** drop-down list entry set to its default value.
-
-    - In the **Cloud Shell region** drop-down list, select the Azure region matching or near the location where you intend to deploy resources in this exercise.
-
-    - In the **Resource group** section, ensure that the **Use existing** option is selected and then select **AADesignLab0301-RG**.
-
-    - In the **Storage account** section, ensure that the **Create new** option is selected and then, in the text box below, type a unique name consisting of a combination of between 3 and 24 characters and digits.
-
-    - In the **File share** section, ensure that the **Create new** option is selected and then, in the text box below, type **cloudshell**.
-
-    - Click the **Create storage** button.
-
-1. Wait for the **Cloud Shell** to finish its first-time setup procedures before you proceed to the next task.
-
+1. In the title line of the Cloud Shell pane, select **Bash** and **Confirm**.
 
 #### Task 2: Install the Azure Building Blocks npm package in Azure Cloud Shell
 
@@ -511,20 +468,15 @@
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the name of the resource group you created earlier in this exercise:
 
     ```sh
-    RESOURCE_GROUP='AADesignLab0303-RG'
+    RESOURCE_GROUP='StagiaireXXX-RG1'
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the Azure region you will use for the deployment:
 
     ```sh
-    LOCATION=$(az group list --query "[?name == 'AADesignLab0301-RG'].location" --output tsv)
+    LOCATION=$(az group list --query "[?name == 'StagiaireXXX-RG1'].location" --output tsv)
     ```
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a resource group that you will use for the deployment:
-
-    ```sh
-    az group create --name $RESOURCE_GROUP --location $LOCATION
-    ```
+    
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to replace the placeholder for the **adminUsername** parameter with the value **Student** in the Building Blocks parameter file:
 
     ```sh
@@ -610,7 +562,7 @@
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the name of the resource group you will use for the deployment:
 
     ```sh
-    RESOURCE_GROUP='AADesignLab0304-RG'
+    RESOURCE_GROUP='StagiaireXXX-RG1''
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the Azure region you will use for the deployment:
@@ -635,12 +587,6 @@
 
     ```sh
     cat ./reference-architectures/virtual-machines/single-vm/parameters/linux/single-vm.json
-    ```
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a new resource group:
-
-    ```sh
-    az group create --name $RESOURCE_GROUP --location $LOCATION
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to deploy a Linux Azure VM by using the Azure Building Blocks:
@@ -672,30 +618,6 @@
 
 > **Review**: In this exercise, you deployed Azure VMs running Windows Server 2016 Datacenter and Linux from Cloud Shell by using Azure Building Blocks.
 
+#### Clean up resources
 
-## Exercise 4: Remove lab resources
-
-#### Task 1: Open Cloud Shell
-
-1. At the top of the portal, click the **Cloud Shell** icon to open the Cloud Shell pane.
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to list all resource groups you created in this lab:
-
-    ```sh
-    az group list --query "[?starts_with(name,'AADesignLab03')]".name --output tsv
-    ```
-
-1. Verify that the output contains only the resource groups you created in this lab. These groups will be deleted in the next task.
-
-#### Task 2: Delete resource groups
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to delete the resource groups you created in this lab
-
-    ```sh
-    az group list --query "[?starts_with(name,'AADesignLab03')]".name --output tsv | xargs -L1 bash -c 'az group delete --name $0 --no-wait --yes'
-    ```
-
-1. Close the **Cloud Shell** prompt at the bottom of the portal.
-
-
-> **Review**: In this exercise, you removed the resources used in this lab.
+1. Refer to **Exercice 2** of **Lab 00** to clean up your resources.
