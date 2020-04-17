@@ -2,30 +2,6 @@
 
 # Lab Answer Key: Deploying Managed Containerized Workloads to Azure
 
-## Before we start
-
-1. Ensure that you are logged in to your Windows 10 lab virtual machine using the following credentials:
-
-    - Username: **Admin**
-
-    - Password: **Pa55w.rd**
-
-1. Review Taskbar located at the bottom of your Windows 10 desktop. The Taskbar contains the icons for the common applications you will use in the labs:
-
-    - Microsoft Edge
-
-    - File Explorer
-
-    - [Visual Studio Code](https://code.visualstudio.com/)
-
-    - [Microsoft Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/)
-
-    - Bash on Ubuntu on Windows
-
-    - Windows PowerShell
-
-    > **Note**: You can also find shortcuts to these applications in the **Start Menu**.
-
 ## Exercise 1: Create Azure Kubernetes Service (AKS) cluster
 
 #### Task 1: Open the Azure Portal
@@ -34,7 +10,7 @@
 
 1. In the open browser window, navigate to the **Azure Portal** (<https://portal.azure.com>).
 
-1. If prompted, authenticate with the user account account that has the owner role in the Azure subscription you will be using in this lab.
+1. If prompted, authenticate with the user account provided by your instructor.
 
 #### Task 2: Open Cloud Shell
 
@@ -42,50 +18,28 @@
 
     > **Note**: The **Cloud Shell** icon is a symbol that is constructed of the combination of the *greater than* and *underscore* characters.
 
-1. If this is your first time opening the **Cloud Shell** using your subscription, you will see a wizard to configure **Cloud Shell** for first-time usage. When prompted, in the **Welcome to Azure Cloud Shell** pane, click **Bash (Linux)**.
+1. Refer to Exercice 1 in Lab 00 to create your Powershell environment.
 
-    > **Note**: If you do not see the configuration options for **Cloud Shell**, this is most likely because you are using an existing subscription with this course's labs. If so, proceed directly to the next task.
-
-1. In the **You have no storage mounted** pane, click **Show advanced settings**, perform the following tasks:
-
-    - Leave the **Subscription** drop-down list entry set to its default value.
-
-    - In the **Cloud Shell region** drop-down list, select the Azure region matching or near the location where you intend to deploy resources in this lab.
-
-    - In the **Resource group** section, ensure that the **Create new** option is selected and then, in the text box, type **AADesignLab0401-RG**.
-
-    - In the **Storage account** section, ensure that the **Create new** option is selected and then, in the text box below, type a unique name consisting of a combination of between 3 and 24 characters and digits.
-
-    - In the **File share** section, ensure that the **Create new** option is selected and then, in the text box below, type **cloudshell**.
-
-    - Click the **Create storage** button.
-
-1. Wait for the **Cloud Shell** to finish its first-time setup procedures before you proceed to the next task.
+1. In the title line of the Cloud Shell pane, select **Bash** and **Confirm**.
 
 #### Task 3: Create an AKS cluster by using Cloud Shell
 
 1. At the **Cloud Shell** command prompt at the bottom of the portal, type in the following command and press **Enter** to create a variable which value designates the name of the resource group you will use in this task:
 
     ```sh
-    RESOURCE_GROUP='AADesignLab0402-RG'
+    RESOURCE_GROUP='StagiaireXXX-RG1'
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the Azure region you will use for the deployment (replace the placeholder `<Azure region>` with the name of the Azure region to which you intend to deploy resources in this lab. `az account list-locations` will list all available locations for your subscription.):
 
     ```sh
-    LOCATION='<Azure region>'
-    ```
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a new resource group:
-
-    ```sh
-    az group create --name $RESOURCE_GROUP --location $LOCATION
+    LOCATION=$(az group list --query "[?name == 'StagiaireXXX-RG1'].location" --output tsv)
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a new AKS cluster:
 
     ```sh
-    az aks create --resource-group $RESOURCE_GROUP --name aad0402-akscluster --node-count 1 --node-vm-size Standard_DS1_v2 --generate-ssh-keys
+    az aks create --resource-group $RESOURCE_GROUP --name aad0402-akscluster --node-count 1 --node-vm-size Standard_DS1_v2 --generate-ssh-keys --service-principal 4a9c2957-7bf3-4d55-843a-77a7194c10fc --client-secret c1812095-43b1-4d0d-8d8d-79e50a5bd73b
     ```
 
     > **Note**: If you receive an error message regarding availability of the VM size which value is represented by the `--node-vm-size` parameter, review the message and try other suggested VM sizes.
@@ -97,9 +51,6 @@
     ```
 
     > **Note**: The **Restriction** column will contain the value **NotAvailableForSubscription** for VM sizes that are not available in your subscription.
-
-    > **Note**: As of 2/21/2019, VM Size **Standard_DS2_V2** was available in **westeurope**
-
 
 1. Wait for the deployment to complete before you proceed to the next task.
 
@@ -337,12 +288,6 @@
     kubectl get pods
     ```
 
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to delete the AKS cluster:
-
-    ```
-    az aks delete --resource-group AADesignLab0402-RG --name aad0402-akscluster --yes --no-wait
-    ```
-
 1. Close the **Cloud Shell** pane.
 
 > **Review**: In this exercise, you implemented autoscaling of pods in an AKS cluster
@@ -381,39 +326,22 @@
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the name of the resource group you will use for the deployment:
 
     ```sh
-    RESOURCE_GROUP='AADesignLab0403-RG'
+    RESOURCE_GROUP='StagiaireXXX-RG2'
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the Azure region you will use for the deployment:
 
     ```sh
-    LOCATION=$(az group list --query "[?name == 'AADesignLab0402-RG'].location" --output tsv)
+    LOCATION=$(az group list --query "[?name == 'StagiaireXXX-RG2'].location" --output tsv)
     ```
 
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a new resource group:
+1. At the **Cloud Shell** command prompt, type in the following commands and press **Enter** to publish informations about the service principal:
 
     ```sh
-    az group create --name $RESOURCE_GROUP --location $LOCATION
+    APP_ID='4a9c2957-7bf3-4d55-843a-77a7194c10fc'
+    PASSWORD='c1812095-43b1-4d0d-8d8d-79e50a5bd73b'
     ```
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create an Azure Active Directory service principal for the authentication of services and resources within the sample solution:
-
-    ```sh
-    SERVICE_PRINCIPAL=$(az ad sp create-for-rbac --name AADesignLab0403-SP --output json)
-    ```
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to retrieve the **appId** attribute of the newly created service principal:
-
-    ```sh
-    APP_ID=$(echo $SERVICE_PRINCIPAL | jq -r .appId)
-    ```
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to retrieve the **password** attribute of the newly created service principal:
-
-    ```sh
-    PASSWORD=$(echo $SERVICE_PRINCIPAL | jq -r .password)
-    ```
-
+    
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create the parameters file you will use for deployment of the sample solution and open it in the vi interface:
 
     ```sh
@@ -481,7 +409,7 @@
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to deploy the sample solution by using its Azure Resource Manager template residing in a GitHub repository:
 
     ```sh
-    az group deployment create --resource-group $RESOURCE_GROUP --template-uri https://raw.githubusercontent.com/MicrosoftLearning/AZ-301-MicrosoftAzureArchitectDesign/master/allfiles/AZ-301T03/Module_02/LabFiles/Starter/azuredeploy.json --parameters ~/parameters.json
+    az group deployment create --resource-group $RESOURCE_GROUP --template-uri https://raw.githubusercontent.com/renaudwangler/AZ-301-MicrosoftAzureArchitectDesign/master/allfiles/AZ-301T03/Module_02/LabFiles/Starter/azuredeploy.json --parameters ~/parameters.json
     ```
     > **Note**: If prompted, provide one of the currently supported AKS versions.
     
@@ -494,36 +422,12 @@
 
 1. In the hub menu in the Azure portal, click **Resource groups**.
 
-1. On the **Resource groups** blade, click the entry representing the **AADesignLab0403-RG** resource group.
+1. On the **Resource groups** blade, click the entry representing the **StagiaireXXX-RG2** resource group.
 
-1. On the **AADesignLab0403-RG** resource group blade, review the list of resources and compare them with the information available at https://docs.microsoft.com/en-us/azure/architecture/example-scenario/apps/devops-with-aks
+1. On the **StagiaireXXX-RG2** resource group blade, review the list of resources and compare them with the information available at https://docs.microsoft.com/en-us/azure/architecture/example-scenario/apps/devops-with-aks
 
 > **Review**: In this exercise, you deployed DevOps with AKS architecture.
 
+#### Clean up resources
 
-## Exercise 5: Remove lab resources
-
-#### Task 1: Open Cloud Shell
-
-1. At the top of the portal, click the **Cloud Shell** icon to open the Cloud Shell pane.
-
-1. At the **Cloud Shell** command prompt at the bottom of the portal, type in the following command and press **Enter** to list all resource groups you created in this lab:
-
-    ```sh
-    az group list --query "[?starts_with(name,'AADesignLab04')]".name --output tsv
-    ```
-
-1. Verify that the output contains only the resource groups you created in this lab. These groups will be deleted in the next task.
-
-#### Task 2: Delete resource groups
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to delete the resource groups you created in this lab
-
-    ```sh
-    az group list --query "[?starts_with(name,'AADesignLab04')]".name --output tsv | xargs -L1 bash -c 'az group delete --name $0 --no-wait --yes'
-    ```
-
-1. Close the **Cloud Shell** prompt at the bottom of the portal.
-
-
-> **Review**: In this exercise, you removed the resources used in this lab.
+1. Refer to **Exercice 2** of **Lab 00** to clean up your resources.
