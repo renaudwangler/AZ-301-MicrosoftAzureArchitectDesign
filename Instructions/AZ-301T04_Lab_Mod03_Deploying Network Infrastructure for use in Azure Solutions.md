@@ -10,7 +10,7 @@
 
 1. In the open browser window, navigate to the **Azure Portal** (<https://portal.azure.com>).
 
-1. When prompted, authenticate with the user account account that has the owner role in the Azure subscription you will be using in this lab.
+1. When prompted, authenticate with the user account provided by your instructor.
 
 #### Task 2: Open Cloud Shell
 
