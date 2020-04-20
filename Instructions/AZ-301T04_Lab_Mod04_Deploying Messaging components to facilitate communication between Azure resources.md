@@ -2,30 +2,6 @@
 
 # Lab Answer Key: Deploying Messaging components to facilitate communication between Azure resources
 
-## Before we start
-
-1. Ensure that you are logged in to your Windows 10 lab virtual machine using the following credentials:
-
-    - Username: **Admin**
-
-    - Password: **Pa55w.rd**
-
-1. Review Taskbar located at the bottom of your Windows 10 desktop. The Taskbar contains the icons for the common applications you will use in the labs:
-
-    - Microsoft Edge
-
-    - File Explorer
-
-    - [Visual Studio Code](https://code.visualstudio.com/)
-
-    - [Microsoft Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/)
-
-    - Bash on Ubuntu on Windows
-
-    - Windows PowerShell
-
-    > **Note**: You can also find shortcuts to these applications in the **Start Menu**.
-
 ## Exercise 1: Deploy a Service Bus namespace
 
 #### Task 1: Open the Azure portal
@@ -34,7 +10,7 @@
 
 1. In the open browser window, navigate to the **Azure Portal** (<https://portal.azure.com>).
 
-1. When prompted, authenticate with the user account account that has the owner role in the Azure subscription you will be using in this lab.
+1. When prompted, authenticate with the user account provided by your instructor.
 
 #### Task 2: Create a Service Bus namespace
 
@@ -54,9 +30,9 @@
 
     - Leave the **Subscription** drop-down list entry set to its default value.
 
-    - In the **Resource group** section, ensure that the **Create new** option is selected and then, in the text box, type **AADesignLab1101-RG**.
+    - In the **Resource group** section, select **StagiaireXXX-RG1**.
 
-    - In the **Location** drop-down list, select the Azure region to which you intend to deploy resources in this lab.
+    - In the **Location** drop-down list, select the Azure region from the Resource Group.
 
     - Click the **Create** button.
 
@@ -66,9 +42,9 @@
 
 1. In the hub menu of the Azure portal, click **Resource groups**.
 
-1. On the **Resource groups** blade, click **AADesignLab1101-RG**.
+1. On the **Resource groups** blade, click **StagiaireXXX-RG1**.
 
-1. On the **AADesignLab1101-RG** blade, click the newly created Service Bus namespace.
+1. On the **StagiaireXXX-RG1** blade, click the newly created Service Bus namespace.
 
 1. On the Service Bus namespace blade, in the **ENTITIES** section, click **Queues**.
 
@@ -134,9 +110,9 @@
 
 1. In the hub menu of the Azure portal, click **Resource groups**.
 
-1. On the **Resource groups** blade, click **AADesignLab1101-RG**.
+1. On the **Resource groups** blade, click **StagiaireXXX-RG1**.
 
-1. On the **AADesignLab1101-RG** blade, click the newly created Azure Storage account.
+1. On the **StagiaireXXX-RG1** blade, click the newly created Azure Storage account.
 
 1. On the Storage account blade, click the **Blobs** tile.
 
@@ -164,7 +140,7 @@
 
     - Leave the **Subscription** drop-down list entry set to its default value.
 
-    - In the **Resource group** section, select the **Use existing** option and then, in the drop-down list, select **AADesignLab1101-RG**.
+    - In the **Resource group** section, select the **Use existing** option and then, in the drop-down list, select **StagiaireXXX-RG1**.
 
     - In the **Location** drop-down list, select the same Azure region you chose in the previous task.
 
@@ -178,9 +154,9 @@
 
 1. In the hub menu in the Azure portal, click **Resource groups**.
 
-1. On the **Resource groups** blade, click **AADesignLab1101-RG**.
+1. On the **Resource groups** blade, click **StagiaireXXX-RG1**.
 
-1. On the **AADesignLab1101-RG** blade, click the entry representing the logic app you created in the previous task.
+1. On the **StagiaireXXX-RG1** blade, click the entry representing the logic app you created in the previous task.
 
 1. On the **Logic Apps Designer** blade, scroll down and click the **Blank Logic App** tile in the **Templates** section.
 
@@ -236,25 +212,9 @@
 
     > **Note**: The **Cloud Shell** icon is a symbol that is constructed of the combination of the *greater than* and *underscore* characters.
 
-1. If this is your first time opening the **Cloud Shell** using your subscription, you will see a wizard to configure **Cloud Shell** for first-time usage. When prompted, in the **Welcome to Azure Cloud Shell** pane, click **Bash (Linux)**.
+1. Refer to Exercice 1 in Lab 00 to create your Powershell environment.
 
-    > **Note**: If you do not see the configuration options for **Cloud Shell**, this is most likely because you are using an existing subscription with this course's labs. If so, proceed directly to the next task.
-
-1. In the **You have no storage mounted** pane, click **Show advanced settings**, perform the following tasks:
-
-    - Leave the **Subscription** drop-down list entry set to its default value.
-
-    - In the **Cloud Shell region** drop-down list, select the Azure region matching or near the location where you deployed resources in this lab.
-
-    - In the **Resource group** section, select the **Use existing** option and then, in the drop-down list, select **AADesignLab1101-RG**.
-
-    - In the **Storage account** section, ensure that the **Create new** option is selected and then, in the text box below, type a unique name consisting of a combination of between 3 and 24 characters and digits.
-
-    - In the **File share** section, ensure that the **Create new** option is selected and then, in the text box below, type **cloudshell**.
-
-    - Click the **Create storage** button.
-
-1. Wait for the **Cloud Shell** to finish its first-time setup procedures before you proceed to the next task.
+1. In the title line of the Cloud Shell pane, select **Bash** and **Confirm**.
 
 #### Task 4: Validate Logic App using Node.js
 
@@ -299,9 +259,9 @@
 
 1. In the hub menu of the Azure portal, click **Resource groups**.
 
-1. On the **Resource groups** blade, click **AADesignLab1101-RG**.
+1. On the **Resource groups** blade, click **StagiaireXXX-RG1**.
 
-1. On the **AADesignLab1101-RG** blade, click the Azure Storage account you created earlier in this lab.
+1. On the **StagiaireXXX-RG1** blade, click the Azure Storage account you created earlier in this lab.
 
 1. On the Storage account blade, click the **Blobs** tile.
 
@@ -311,28 +271,6 @@
 
 > **Review**: In this exercise, you created a logic app that is triggered by messages from a queue in a Service Bus namespace.
 
-## Exercise 3: Remove lab resources
+#### Clean up resources
 
-#### Task 1: Open Cloud Shell
-
-1. At the top of the portal, click the **Cloud Shell** icon to open the Cloud Shell pane.
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to list all resource groups you created in this lab:
-
-    ```sh
-    az group list --query "[?starts_with(name,'AADesignLab11')]".name --output tsv
-    ```
-
-1. Verify that the output contains only the resource groups you created in this lab. These groups will be deleted in the next task.
-
-#### Task 2: Delete resource groups
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to delete the resource groups you created in this lab
-
-    ```sh
-    az group list --query "[?starts_with(name,'AADesignLab11')]".name --output tsv | xargs -L1 bash -c 'az group delete --name $0 --no-wait --yes'
-    ```
-
-1. Close the **Cloud Shell** prompt at the bottom of the portal.
-
-> **Review**: In this exercise, you removed the resources used in this lab.
+1. Refer to **Exercice 2** of **Lab 00** to clean up your resources.
