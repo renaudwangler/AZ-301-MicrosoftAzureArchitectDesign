@@ -374,7 +374,7 @@
 
     - Leave the **Subscription** drop-down list entry set to its default value.
 
-    - In the **Resource group** drop-down list, select the **AADesignLab08-spoke1-vnet-rg** entry.
+    - In the **Resource group** drop-down list, select the **StagiaireXXX-RG1** entry.
 
     - In the **Virtual machine** drop-down list, leave the default entry.
 
