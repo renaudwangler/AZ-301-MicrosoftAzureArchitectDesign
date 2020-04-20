@@ -2,30 +2,6 @@
 
 # Lab Answer Key: Deploying Network Infrastructure for Use in Azure Solutions
 
-## Before we start
-
-1. Ensure that you are logged in to your Windows 10 lab virtual machine using the following credentials:
-
-    - Username: **Admin**
-
-    - Password: **Pa55w.rd**
-
-1. Review Taskbar located at the bottom of your Windows 10 desktop. The Taskbar contains the icons for the common applications you will use in the labs:
-
-    - Microsoft Edge
-
-    - File Explorer
-
-    - [Visual Studio Code](https://code.visualstudio.com/)
-
-    - [Microsoft Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/)
-
-    - Bash on Ubuntu on Windows
-
-    - Windows PowerShell
-
-    > **Note**: You can also find shortcuts to these applications in the **Start Menu**.
-
 ## Exercise 1: Configure the lab environment
 
 #### Task 1: Open the Azure Portal
@@ -42,25 +18,9 @@
 
     > **Note**: The **Cloud Shell** icon is a symbol that is constructed of the combination of the *greater than* and *underscore* characters.
 
-1. If this is your first time opening the **Cloud Shell** using your subscription, you will see a wizard to configure **Cloud Shell** for first-time usage. When prompted, in the **Welcome to Azure Cloud Shell** pane, click **Bash (Linux)**.
+1. Refer to Exercice 1 in Lab 00 to create your Powershell environment.
 
-    > **Note**: If you do not see the configuration options for **Cloud Shell**, this is most likely because you are using an existing subscription with this course's labs. If so, proceed directly to the next task.
-
-1. In the **You have no storage mounted** pane, click **Show advanced settings**, perform the following tasks:
-
-    - Leave the **Subscription** drop-down list entry set to its default value.
-
-    - In the **Cloud Shell region** drop-down list, select the Azure region matching or near the location where you intend to deploy resources in this lab
-
-    - In the **Resource group** section, select the **Use existing** option and then, in the drop-down list, select **AADesignLab0901-RG**.
-
-    - In the **Storage account** section, ensure that the **Create new** option is selected and then, in the text box below, type a unique name consisting of a combination of between 3 and 24 characters and digits.
-
-    - In the **File share** section, ensure that the **Create new** option is selected and then, in the text box below, type **cloudshell**.
-
-    - Click the **Create storage** button.
-
-1. Wait for the **Cloud Shell** to finish its first-time setup procedures before you proceed to the next task.
+1. In the title line of the Cloud Shell pane, select **Bash** and **Confirm**.
 
 #### Task 3: Install the Azure Building Blocks npm package in Azure Cloud Shell
 
@@ -111,36 +71,34 @@
 
 1. In the **Cloud Shell** pane, click the **Upload/Download files** icon and, in the drop-down menu, click **Upload**.
 
-1. In the **Open** dialog box, navigate to the **\\allfiles\\AZ-301T04\\Module_03\\LabFiles\\Starter\\** folder, select **hub-nva.json** and click **Open**. Repeat the same step to upload the files **hub-vnet.json**, **hub-vnet-peering.json**, **spoke1.json**, and **spoke2.json**.
-
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to replace the placeholder for the **adminUsername** parameter with the value **Student** in the **hub-vnet.json** Building Blocks parameter file:
 
     ```sh
-    sed -i.bak1 's/"adminUsername": ""/"adminUsername": "Student"/' ~/hub-vnet.json
+    sed -i.bak1 's/"adminUsername": ""/"adminUsername": "Student"/' ~/az-301/T4/hub-vnet.json
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to replace the placeholder for the **adminPassword** parameter with the value **Pa55w.rd1234** in the **hub-vnet.json** Building Blocks parameter file:
 
     ```sh
-    sed -i.bak2 's/"adminPassword": ""/"adminPassword": "Pa55w.rd1234"/' ~/hub-vnet.json
+    sed -i.bak2 's/"adminPassword": ""/"adminPassword": "Pa55w.rd1234"/' ~/az-301/T4/hub-vnet.json
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to verify that the parameter values were successfully changed in the **hub-vnet.json** Building Blocks parameter file:
 
     ```sh
-    cat ~/hub-vnet.json
+    cat ~/az-301/T4/hub-vnet.json
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to replace the placeholder for the **adminUsername** parameter with the value **Student** in the **hub-nva.json** Building Blocks parameter file:
 
     ```sh
-    sed -i.bak1 's/"adminUsername": ""/"adminUsername": "Student"/' ~/hub-nva.json
+    sed -i.bak1 's/"adminUsername": ""/"adminUsername": "Student"/' ~/az-301/T4/hub-nva.json
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to replace the placeholder for the **adminPassword** parameter with the value **Pa55w.rd1234** in the **hub-nva.json** Building Blocks parameter file:
 
     ```sh
-    sed -i.bak2 's/"adminPassword": ""/"adminPassword": "Pa55w.rd1234"/' ~/hub-nva.json
+    sed -i.bak2 's/"adminPassword": ""/"adminPassword": "Pa55w.rd1234"/' ~/az-301/T4/hub-nva.json
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to verify that the parameter values were successfully changed in the **hub-nva.json** Building Blocks parameter file:
@@ -152,37 +110,37 @@
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to replace the placeholder for the **adminUsername** parameter with the value **Student** in the **spoke1.json** Building Blocks parameter file:
 
     ```sh
-    sed -i.bak1 's/"adminUsername": ""/"adminUsername": "Student"/' ~/spoke1.json
+    sed -i.bak1 's/"adminUsername": ""/"adminUsername": "Student"/' ~/az-301/T4/spoke1.json
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to replace the placeholder for the **adminPassword** parameter with the value **Pa55w.rd1234** in **spoke1.json** the Building Blocks parameter file:
 
     ```sh
-    sed -i.bak2 's/"adminPassword": ""/"adminPassword": "Pa55w.rd1234"/' ~/spoke1.json
+    sed -i.bak2 's/"adminPassword": ""/"adminPassword": "Pa55w.rd1234"/' ~/az-301/T4/spoke1.json
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to verify that the parameter values were successfully changed in the **spoke1.json** Building Blocks parameter file:
 
     ```sh
-    cat ~/spoke1.json
+    cat ~/az-301/T4/spoke1.json
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to replace the placeholder for the **adminUsername** parameter with the value **Student** in the **spoke2.json** Building Blocks parameter file:
 
     ```sh
-    sed -i.bak1 's/"adminUsername": ""/"adminUsername": "Student"/' ~/spoke2.json
+    sed -i.bak1 's/"adminUsername": ""/"adminUsername": "Student"/' ~/az-301/T4/spoke2.json
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to replace the placeholder for the **adminPassword** parameter with the value **Pa55w.rd1234** in the **spoke2.json** Building Blocks parameter file:
 
     ```sh
-    sed -i.bak2 's/"adminPassword": ""/"adminPassword": "Pa55w.rd1234"/' ~/spoke2.json
+    sed -i.bak2 's/"adminPassword": ""/"adminPassword": "Pa55w.rd1234"/' ~/az-301/T4/spoke2.json
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to verify that the parameter values were successfully changed in the **spoke2.json** Building Blocks parameter file:
 
     ```sh
-    cat ~/spoke2.json
+    cat ~/az-301/T4/spoke2.json
     ```
 
 #### Task 5: Implement the hub component of the Hub and Spoke design
@@ -196,25 +154,19 @@
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the name of the resource group that will contain the hub virtual network:
 
     ```sh
-    RESOURCE_GROUP_HUB_VNET='AADesignLab08-hub-vnet-rg'
+    RESOURCE_GROUP_HUB_VNET='StagiaireXXX-RG1'
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the Azure region you will use for the deployment (replace the placeholder `<Azure region>` with the name of the Azure region to which you intend to deploy resources in this lab):
 
     ```sh
-    LOCATION='<Azure region>'
+    LOCATION=$(az group list --query "[?name == 'StagiaireXXX-RG1'].location" --output tsv)
     ```
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create the resource group for the deployment.
-
-    ```sh
-    az group create --name $RESOURCE_GROUP_HUB_VNET --location $LOCATION
-    ```
-
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to deploy the hub component of the Hub-and-Spoke topology by using the Azure Building Blocks:
 
     ```sh
-    azbb -g $RESOURCE_GROUP_HUB_VNET -s $SUBSCRIPTION_ID -l $LOCATION -p ~/hub-vnet.json --deploy
+    azbb -g $RESOURCE_GROUP_HUB_VNET -s $SUBSCRIPTION_ID -l $LOCATION -p ~/az-301/T4/hub-vnet.json --deploy
     ```
 
 1. Do not wait for the deployment to complete but proceed to the next task.
@@ -239,24 +191,19 @@
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the name of the resource group that will contain the first spoke virtual network:
 
     ```sh
-    RESOURCE_GROUP_SPOKE1_VNET='AADesignLab08-spoke1-vnet-rg'
+    RESOURCE_GROUP_SPOKE1_VNET='StagiaireXXX-RG1'
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the Azure region you will use for the deployment:
 
     ```sh
-    LOCATION=$(az group list --query "[?name == 'AADesignLab08-hub-vnet-rg'].location" --output tsv)
+    LOCATION=$(az group list --query "[?name == 'StagiaireXXX-RG1'].location" --output tsv)
     ```
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create the resource group for the deployment:
-
-    ```sh
-    az group create --name $RESOURCE_GROUP_SPOKE1_VNET --location $LOCATION
-    ```
-
+    
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to deploy the first spoke component of the Hub-and-Spoke topology by using the Azure Building Blocks:
 
     ```sh
-    azbb -g $RESOURCE_GROUP_SPOKE1_VNET -s $SUBSCRIPTION_ID -l $LOCATION -p ~/spoke1.json --deploy
+    azbb -g $RESOURCE_GROUP_SPOKE1_VNET -s $SUBSCRIPTION_ID -l $LOCATION -p ~/az-301/T4/spoke1.json --deploy
     ```
 
 1. Do not wait for the deployment to complete but proceed to the next step.
@@ -278,24 +225,19 @@
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the name of the resource group that will contain the second spoke virtual network:
 
     ```sh
-    RESOURCE_GROUP_SPOKE2_VNET='AADesignLab08-spoke2-vnet-rg'
+    RESOURCE_GROUP_SPOKE2_VNET='StagiaireXXX-RG1'
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the Azure region you will use for the deployment:
 
     ```sh
-    LOCATION=$(az group list --query "[?name == 'AADesignLab08-hub-vnet-rg'].location" --output tsv)
-    ```
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create the resource group for the deployment:
-
-    ```sh
-    az group create --name $RESOURCE_GROUP_SPOKE2_VNET --location $LOCATION
+    LOCATION=$(az group list --query "[?name == 'StagiaireXXX-RG1'].location" --output tsv)
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to deploy the second spoke component of the Hub-and-Spoke topology by using the Azure Building Blocks:
 
     ```sh
-    azbb -g $RESOURCE_GROUP_SPOKE2_VNET -s $SUBSCRIPTION_ID -l $LOCATION -p ~/spoke2.json --deploy
+    azbb -g $RESOURCE_GROUP_SPOKE2_VNET -s $SUBSCRIPTION_ID -l $LOCATION -p ~/az-301/T4/spoke2.json --deploy
     ```
 
 1. Do not wait for the deployment to complete but proceed to the next task.
@@ -319,19 +261,19 @@
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the name of the resource group that contains the hub virtual network:
 
     ```sh
-    RESOURCE_GROUP_HUB_VNET='AADesignLab08-hub-vnet-rg'
+    RESOURCE_GROUP_HUB_VNET='StagiaireXXX-RG1'
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the Azure region you will use for the deployment:
 
     ```sh
-    LOCATION=$(az group list --query "[?name == 'AADesignLab08-hub-vnet-rg'].location" --output tsv)
+    LOCATION=$(az group list --query "[?name == 'StagiaireXXX-RG1'].location" --output tsv)
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to provision peering of the virtual networks in the Hub-and-Spoke topology by using the Azure Building Blocks:
 
     ```sh
-    azbb -g $RESOURCE_GROUP_HUB_VNET -s $SUBSCRIPTION_ID -l $LOCATION -p ~/hub-vnet-peering.json --deploy
+    azbb -g $RESOURCE_GROUP_HUB_VNET -s $SUBSCRIPTION_ID -l $LOCATION -p ~/az-301/T4/hub-vnet-peering.json --deploy
     ```
 
 1. Do not wait for the deployment to complete but proceed to the next task.
@@ -356,24 +298,19 @@
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the name of the resource group that will contain the hub Network Virtual Appliance (NVA) functioning as a router:
 
     ```sh
-    RESOURCE_GROUP_HUB_NVA='AADesignLab08-hub-nva-rg'
+    RESOURCE_GROUP_HUB_NVA='StagiaireXXX-RG1'
     ```
 
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to create a variable which value designates the Azure region you will use for the deployment:
 
     ```sh
-    LOCATION=$(az group list --query "[?name == 'AADesignLab08-hub-vnet-rg'].location" --output tsv)
+    LOCATION=$(az group list --query "[?name == 'StagiaireXXX-RG1'].location" --output tsv)
     ```
-1. At the **Cloud Shell** command prompt, type in the following command to create the resource group that will be used in the deployment.
-
-    ```sh
-    az group create --name $RESOURCE_GROUP_HUB_NVA --location $LOCATION
-    ```
-
+    
 1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to deploy the NVA component of the Hub-and-Spoke topology by using the Azure Building Blocks:
 
     ```sh
-    azbb -g $RESOURCE_GROUP_HUB_NVA -s $SUBSCRIPTION_ID -l $LOCATION -p ~/hub-nva.json --deploy
+    azbb -g $RESOURCE_GROUP_HUB_NVA -s $SUBSCRIPTION_ID -l $LOCATION -p ~/az-301/T4/hub-nva.json --deploy
     ```
 
 1. Wait for the deployment to complete before you proceed to the next task.
@@ -454,28 +391,6 @@
     > **Note**: If this is the first time you are using Network Watcher, the check can take up to 5 minutes.
 
 
-## Exercise 3: Remove lab resources
+#### Clean up resources
 
-#### Task 1: Open Cloud Shell
-
-1. At the top of the portal, click the **Cloud Shell** icon to open the Cloud Shell pane.
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to list all resource groups you created in this lab:
-
-    ```sh
-    az group list --query "[?starts_with(name,'AADesignLab08')]".name --output tsv
-    ```
-
-1. Verify that the output contains only the resource groups you created in this lab. These groups will be deleted in the next task.
-
-#### Task 2: Delete resource groups
-
-1. At the **Cloud Shell** command prompt, type in the following command and press **Enter** to delete the resource groups you created in this lab
-
-    ```sh
-    az group list --query "[?starts_with(name,'AADesignLab08')]".name --output tsv | xargs -L1 bash -c 'az group delete --name $0 --no-wait --yes'
-    ```
-
-1. Close the **Cloud Shell** prompt at the bottom of the portal.
-
-> **Review**: In this exercise, you removed the resources used in this lab.
+1. Refer to **Exercice 2** of **Lab 00** to clean up your resources.
